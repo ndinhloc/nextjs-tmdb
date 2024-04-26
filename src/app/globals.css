@@ -2,5 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-:global {@import 'node_modules/slick-carousel/slick/slick';}
+:global {
+  @import "node_modules/slick-carousel/slick/slick";
+}

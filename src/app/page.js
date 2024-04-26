@@ -1,45 +1,55 @@
-"use client";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { API } from "./constants";
-import Carousel from "./components/Carousel";
-import Result from "./components/Result";
+import { API, MOVIE_GENRES_MAP } from "./constants";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import HeroSlide from "./components/HeroSlide";
+import Carousel from "./components/Carousel";
+async function getHeroData() {
+  const res = await fetch(API.trending("movie", 1)).then((response) =>
+    response.json()
+  );
+  const movies = res.results;
+  return movies;
+}
 
-export default function Home() {
-  const [data, setData] = useState({
-    trendingMovies: [],
-    trendingTV: [],
-  });
-  useEffect(() => {
-    axios
-      .all([
-        axios.get(API.trending("movie", 1)),
-        axios.get(API.trending("tv", 1)),
-      ])
-      .then(
-        axios.spread((trendingMoviesRes, trendingTVRes) => {
-          setData({
-            trendingMovies: trendingMoviesRes.data.results,
-            trendingTV: trendingTVRes.data.results,
-          });
-        })
-      );
-  }, []);
+async function getAiringShows() {
+  const res = await fetch(API.popular.tv).then((response) => response.json());
+  const shows = res.results;
+  return shows;
+}
+
+async function getTopRatedShows() {
+  const res = await fetch(API.topRated.tv).then((response) => response.json());
+  const shows = res.results;
+  return shows;
+}
+
+export default async function Home({}) {
+  const trendingMovies = await getHeroData();
+  const popularShows = await getAiringShows();
+  const topRatedShows = await getTopRatedShows();
   return (
-    <div className="w-5/6 ">
-      <Link href={"/trending/movie"}>
-        <h1 className=" mt-6 mb-4 mx-10 text-2xl font-semibold">
-          Trending TV Shows
-        </h1>
-      </Link>
-      <Carousel data={data.trendingTV} type={1}></Carousel>
-      <Link href={"/trending/tv"}>
-        <h1 className=" mt-6 mb-4 mx-10 text-2xl font-semibold">
-          Trending Movies
-        </h1>
-      </Link>
-      <Carousel data={data.trendingMovies} type={0}></Carousel>
+    <div className="">
+      <HeroSlide data={trendingMovies}></HeroSlide>
+      <div className="">
+        <Link
+          href={"/"}
+          className="flex items-center gap-x-1 mt-2 mr-6 font-semibold float-end"
+        >
+          {" "}
+          View all Trending<ArrowRightIcon></ArrowRightIcon>
+        </Link>
+      </div>
+      <div className="mt-10 w-3/5 mx-auto">
+        <Link href={"/"} className="text-xl font-semibold">
+          What's popular
+        </Link>
+        <Carousel data={popularShows} type={1} className="mt-4"></Carousel>
+        <Link href={"/"} className="text-xl font-semibold mt-4">
+          Top Rated Shows
+        </Link>
+        <Carousel data={topRatedShows} type={1} className="mt-4"></Carousel>
+      </div>
     </div>
   );
 }

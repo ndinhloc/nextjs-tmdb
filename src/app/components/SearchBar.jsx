@@ -12,7 +12,7 @@ export default function SearchBar() {
   };
   return (
     <form
-      className="flex items-center rounded-full bg-slate-100 px-3 py-2 my-6 border-2 border-slate-500"
+      className="flex items-center rounded-full bg-white px-3 py-2 my-6 border-2 border-slate-500"
       onSubmit={handleSubmit}
     >
       <input

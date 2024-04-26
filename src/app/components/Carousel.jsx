@@ -1,3 +1,4 @@
+"use client";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,9 +14,8 @@ export default function Carousel(props) {
     slidesToShow: 5,
     slidesToScroll: 3,
     initialSlide: 0,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    pauseOnHover: true,
+    autoplay: false,
+    pauseOnHover: false,
 
     responsive: [
       {
@@ -44,22 +44,23 @@ export default function Carousel(props) {
       },
     ],
   };
+  const ref = props.type == 0 ? "moive" : "tv";
   return (
     <div className="container mx-auto">
       <Slider {...settings}>
         {props.data.map((item) => (
-          <div key={item.id} className="">
-            <Link href={`/movie/${item.id}`}>
-              <div className=" flex flex-col justify-center items-center">
+          <div key={item.id} className=" flex flex-col items-center">
+            <Link href={`/${ref}/${item.id}`}>
+              <div className=" ">
                 <Image
                   src={API.image(item.poster_path)}
                   width={190}
                   height={190}
                   alt={item.id}
-                  className="rounded-xl w-auto h-auto"
+                  className="rounded-xl w-11/12 h-[250px] 2xl:h-[400px] object-cover object-top"
                 ></Image>
               </div>
-              <div className="flex flex-col item-center justify-center">
+              <div className="flex-1 p-6 flex-col ">
                 <h2 className="text-center">
                   {props.type == 0 ? item.title : item.name}
                 </h2>

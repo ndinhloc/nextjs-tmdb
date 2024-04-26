@@ -7,10 +7,30 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      keyframes: {
+        scale: {
+          "0%": {
+            scale: "20%",
+          },
+          "20%": {
+            scale: "60%",
+          },
+          "40%": {
+            scale: "80%",
+          },
+          "60%": {
+            scale: "90%",
+          },
+          "80%": {
+            scale: "110%",
+          },
+          "100%": {
+            scale: "100%",
+          },
+        },
+      },
+      animation: {
+        "scale-in": "scale 2s infinite",
       },
     },
   },

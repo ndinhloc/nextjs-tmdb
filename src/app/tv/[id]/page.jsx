@@ -3,7 +3,7 @@ import { API } from "../../constants";
 import Link from "next/link";
 import Carousel from "@/app/components/Carousel";
 async function getMovieDetail(id) {
-  const res = await fetch(API.details(id, "movie")).then((response) =>
+  const res = await fetch(API.details(id, "tv")).then((response) =>
     response.json()
   );
 
@@ -11,14 +11,14 @@ async function getMovieDetail(id) {
 }
 
 async function getRecommendation(id) {
-  const res = await fetch(API.recommend(id, "movie")).then((response) =>
+  const res = await fetch(API.recommend(id, "tv")).then((response) =>
     response.json()
   );
   const movies = res.results;
   return movies;
 }
 
-export default async function MoviePage({ params }) {
+export default async function TVPage({ params }) {
   const detail = await getMovieDetail(params.id);
   const res = await getRecommendation(params.id);
   const recommend = res.slice(0, 10);

@@ -143,6 +143,45 @@ export const MOVIE_GENRES = [
   },
 ];
 
+export const MOVIE_GENRES_MAP = [
+  {
+    28: "Action",
+
+    12: "Adventure",
+
+    16: "Animation",
+
+    35: "Comedy",
+
+    80: "Crime",
+
+    99: "Documentary",
+
+    18: "Drama",
+    10751: "Family",
+
+    14: "Fantasy",
+
+    36: "History",
+    27: "Horror",
+
+    10402: "Music",
+
+    9648: "Mystery",
+
+    10749: "Romance",
+
+    878: "Science Fiction",
+
+    10770: "TV Movie",
+
+    53: "Thriller",
+    10752: "War",
+
+    37: "Western",
+  },
+];
+
 export const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 export const TMDB_IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 export const API_KEY_QUERY_PARAM = "api_key=5ab81238f51483488c57542fc90bbe50";
@@ -150,6 +189,9 @@ export const API_KEY_QUERY_PARAM = "api_key=5ab81238f51483488c57542fc90bbe50";
 export const API = {
   search(type = "multi", query, page = 1) {
     return `${TMDB_BASE_URL}/search/${type}?query=${query}&${API_KEY_QUERY_PARAM}&page=${page}`;
+  },
+  recommend(id, type) {
+    return `${TMDB_BASE_URL}/${type}/${id}/recommendations?${API_KEY_QUERY_PARAM}`;
   },
   details(id, type) {
     return `${TMDB_BASE_URL}/${type}/${id}?${API_KEY_QUERY_PARAM}`;
@@ -160,7 +202,10 @@ export const API = {
   image(path) {
     return `${TMDB_IMG_BASE_URL}${path}`;
   },
-
+  topRated: {
+    movies: `${TMDB_BASE_URL}/movie/top_rated?${API_KEY_QUERY_PARAM}&language=en-US&page=1&append_to_response=images`,
+    tv: `${TMDB_BASE_URL}/tv/top_rated?${API_KEY_QUERY_PARAM}&language=en-US&page=1&append_to_response=images`,
+  },
   popular: {
     movies: `${TMDB_BASE_URL}/movie/popular?${API_KEY_QUERY_PARAM}&language=en-US&page=1&append_to_response=images`,
     tv: `${TMDB_BASE_URL}/tv/popular?${API_KEY_QUERY_PARAM}&language=en-US&page=1&append_to_response=images`,
