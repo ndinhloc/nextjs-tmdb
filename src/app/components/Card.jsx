@@ -4,7 +4,7 @@ import Image from "next/image";
 import { API } from "../constants";
 export default function Card(props) {
   return (
-    <div className="group rounded-2xl overflow-hidden shadow-lg my-4  relative min-h-full">
+    <div className="group rounded-2xl overflow-hidden shadow-lg my-4  relative min-h-full transform transition duration-500 hover:scale-110">
       <Link href={`/movie/${props.id}`} className="">
         <Image
           src={API.image(props.poster)}

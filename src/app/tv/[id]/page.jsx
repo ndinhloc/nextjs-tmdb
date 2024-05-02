@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { API } from "../../constants";
 import Link from "next/link";
-import Carousel from "@/app/components/Carousel";
+
 async function getMovieDetail(id) {
   const res = await fetch(API.details(id, "tv")).then((response) =>
     response.json()
@@ -25,14 +25,14 @@ export default async function TVPage({ params }) {
 
   const genres = detail.genres;
   return (
-    <div className="w-3/4 object-contain mt-10 mx-auto mb-20">
+    <div className="w-full object-contain mb-20 text-slate-200">
       <div className="relative ">
         <Image
           src={API.image(detail.backdrop_path)}
           width={1920}
           height={1080}
           alt=""
-          className=" opacity-80 object-contain rounded-2xl"
+          className=" opacity-80  w-full h-[640px]  object-cover object-left-top brightness-50"
         ></Image>
         <div className="absolute -bottom-10 left-20 ">
           <Image
@@ -71,11 +71,11 @@ export default async function TVPage({ params }) {
       <h1 className="text-lg font-semibold mt-10 mb-6 mx-20">
         Recommendations
       </h1>
-      <div className="grid grid-cols-5 w-5/6 gap-x-4 mx-auto">
+      <div className="grid grid-cols-5 w-5/6 gap-x-4 mx-auto ">
         {recommend.map((item) => (
           <div
             key={item.id}
-            className=" flex flex-col items-center h-[250]px w-[250px]"
+            className=" flex flex-col items-center h-[250]px w-[250px] transform transition duration-500 hover:scale-110"
           >
             <Link href={`/movie/${item.id}`}>
               <div className=" ">
@@ -87,7 +87,7 @@ export default async function TVPage({ params }) {
                   className="rounded-xl w-11/12 h-[250px] 2xl:h-[400px] object-cover object-top"
                 ></Image>
               </div>
-              <div className="flex-1 p-6 flex-col ">
+              <div className="flex-1 p-4 flex-col ">
                 <h2 className="text-center">{item.title || item.name}</h2>
               </div>
             </Link>

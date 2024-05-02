@@ -1,6 +1,4 @@
 "use client";
-import axios from "axios";
-
 import { API } from "../constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +17,7 @@ export default function HeroSlide(props) {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: false,
+    arrows: false,
   };
 
   return (
@@ -33,9 +32,9 @@ export default function HeroSlide(props) {
                   width={1920}
                   height={1080}
                   alt={item.id}
-                  className="w-full h-[480px]  object-cover object-left-top brightness-50"
+                  className="w-full h-[640px]  object-cover object-left-top brightness-50"
                 ></Image>
-                <div className="absolute">
+                <div className="absolute left-20">
                   <div className="flex gap-x-6">
                     <Image
                       src={API.image(item.poster_path)}
@@ -46,7 +45,7 @@ export default function HeroSlide(props) {
                     ></Image>
                     <div>
                       <p className="lg:text-3xl font-semibold text-white mb-6">
-                        {item.title || item.name}
+                        {item.title.toUpperCase() || item.name.toUpperCase()}
                       </p>
 
                       <p className="text-lg text-white mb-4">

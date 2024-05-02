@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
@@ -12,16 +12,19 @@ export default function SearchBar() {
   };
   return (
     <form
-      className="flex items-center rounded-full bg-white px-3 py-2 my-6 border-2 border-slate-500"
+      className="flex items-center rounded-xl bg-[#05151E] px-3 py-2 my-6 border-2 border-slate-100"
       onSubmit={handleSubmit}
     >
       <input
         type="search"
-        placeholder="Search for a movies, TV show..."
-        className="text-base bg-transparent w-full focus:outline-none px-2"
+        placeholder="Search for movies, TV shows..."
+        className="text-base text-slate-200 bg-transparent w-full focus:outline-none px-2"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-      />
+      ></input>
+      <div style={{ color: "white" }}>
+        <MagnifyingGlassIcon className="w-5 h-5"></MagnifyingGlassIcon>
+      </div>
     </form>
   );
 }

@@ -6,6 +6,7 @@ import React from "react";
 import Image from "next/image";
 import { API } from "../constants";
 import Link from "next/link";
+import { motion } from "framer-motion";
 export default function Carousel(props) {
   const settings = {
     dots: false,
@@ -47,9 +48,13 @@ export default function Carousel(props) {
   const ref = props.type == 0 ? "moive" : "tv";
   return (
     <div className="container mx-auto">
-      <Slider {...settings}>
+      <Slider {...settings} className="">
         {props.data.map((item) => (
-          <div key={item.id} className=" flex flex-col items-center">
+          <motion.div
+            key={item.id}
+            className=" flex flex-col items-center rounded-xl "
+            whileHover={{ scale: 1.1 }}
+          >
             <Link href={`/${ref}/${item.id}`}>
               <div className=" ">
                 <Image
@@ -61,12 +66,12 @@ export default function Carousel(props) {
                 ></Image>
               </div>
               <div className="flex-1 p-6 flex-col ">
-                <h2 className="text-center">
-                  {props.type == 0 ? item.title : item.name}
+                <h2 className="text-center text-slate-200">
+                  {item.title || item.name}
                 </h2>
               </div>
             </Link>
-          </div>
+          </motion.div>
         ))}
       </Slider>
     </div>

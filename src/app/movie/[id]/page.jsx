@@ -25,14 +25,14 @@ export default async function MoviePage({ params }) {
 
   const genres = detail.genres;
   return (
-    <div className="w-3/4 object-contain mt-10 mx-auto mb-20">
+    <div className="w-full object-contain mb-20 text-slate-200">
       <div className="relative ">
         <Image
           src={API.image(detail.backdrop_path)}
           width={1920}
           height={1080}
           alt=""
-          className=" opacity-80 object-contain rounded-2xl"
+          className=" opacity-80  w-full h-[640px]  object-cover object-left-top brightness-50"
         ></Image>
         <div className="absolute -bottom-10 left-20 ">
           <Image
@@ -75,7 +75,7 @@ export default async function MoviePage({ params }) {
         {recommend.map((item) => (
           <div
             key={item.id}
-            className=" flex flex-col items-center h-[250]px w-[250px]"
+            className=" flex flex-col items-center h-[250]px w-[250px] transform transition duration-500 hover:scale-110"
           >
             <Link href={`/movie/${item.id}`}>
               <div className=" ">

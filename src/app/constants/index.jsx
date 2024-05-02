@@ -187,6 +187,7 @@ export const TMDB_IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 export const API_KEY_QUERY_PARAM = "api_key=5ab81238f51483488c57542fc90bbe50";
 
 export const API = {
+  nowPlaying: `${TMDB_BASE_URL}/movie/now_playing?${API_KEY_QUERY_PARAM}&language=en-US&page=1&append_to_response=images`,
   search(type = "multi", query, page = 1) {
     return `${TMDB_BASE_URL}/search/${type}?query=${query}&${API_KEY_QUERY_PARAM}&page=${page}`;
   },
