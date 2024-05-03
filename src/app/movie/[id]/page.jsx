@@ -69,7 +69,7 @@ export default async function MoviePage({ params }) {
         <p className="text-md">{detail.overview}</p>
       </div>
       <h1 className="text-lg font-semibold mt-10 mb-6 mx-20">
-        Recommendations
+        You may also like
       </h1>
       <div className="grid grid-cols-5 w-5/6 gap-x-4 mx-auto">
         {recommend.map((item) => (
